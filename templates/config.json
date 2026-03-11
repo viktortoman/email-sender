@@ -1,40 +1,28 @@
 {
   "senders": [
     {
-      "id": "viktor",
-      "name": "Tomán Viktor",
-      "email": "viktor.toman19@gmail.com",
-      "envPass": "VIKTOR_PASS"
-    },
-    {
       "id": "flora",
       "name": "Tomán-Körmöczi Flóra",
       "email": "flora@ajandekbar.hu",
       "envPass": "FLORA_PASS"
+    },
+    {
+      "id": "viktor",
+      "name": "Tomán Viktor",
+      "email": "viktor.toman19@gmail.com",
+      "envPass": "VIKTOR_PASS"
     }
   ],
   "templates": [
-    {
-      "id": "viktor",
-      "name": "Viktor sablon",
-      "file": "viktor/email.html",
-      "bodies": [
-        {
-          "id": "default",
-          "name": "Alapértelmezett",
-          "file": "viktor/body.txt"
-        }
-      ]
-    },
     {
       "id": "flora",
       "name": "Flóra sablon",
       "file": "flora/email.html",
       "attachments": [
         {
-            "filename": "signature.jpg",
-            "path": "flora/8cc05a95-834e-4977-81f3-7e00131f02a3.jpg",
-            "cid": "signature"
+          "filename": "signature.jpg",
+          "path": "flora/8cc05a95-834e-4977-81f3-7e00131f02a3.jpg",
+          "cid": "signature"
         }
       ],
       "bodies": [
@@ -47,6 +35,18 @@
           "id": "elso_follow_up",
           "name": "1. follow-up",
           "file": "flora/elso_follow_up.txt"
+        }
+      ]
+    },
+    {
+      "id": "viktor",
+      "name": "Viktor sablon",
+      "file": "viktor/email.html",
+      "bodies": [
+        {
+          "id": "default",
+          "name": "Alapértelmezett",
+          "file": "viktor/body.txt"
         }
       ]
     }

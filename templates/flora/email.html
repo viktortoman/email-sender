@@ -4,135 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AjándékBár - Sales Email</title>
-    <style>
-        /* Client-specific Resets
-          Forces Outlook and iOS mail apps to render sizes and tables correctly.
-        */
-        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
-
-        /* General Styles */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f8;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #333333;
-            -webkit-font-smoothing: antialiased;
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style type="text/css">
+        /* Gmail strips <style> on mobile, so everything critical is inline too.
+           These styles serve desktop webmail and Apple Mail. */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
-
-        /* Main wrapper styles */
-        .wrapper {
-            width: 100%;
-            table-layout: fixed;
-            background-color: #f4f6f8;
-            padding-bottom: 40px;
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
         }
-
-        /* Inner container max-width */
-        .outer {
-            margin: 0 auto;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        /* Dynamic body content wrapper */
-        .body-content p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #333333;
-        }
-
-        /* Footer link hover effects */
-        .footer-link {
-            color: #888888;
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
             text-decoration: none;
         }
-        .footer-link:hover {
-            color: #321C5A !important;
-            text-decoration: underline;
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #f4f6f8;
         }
-
-        /* Mobile Responsive Styles */
+        /* Prevent iOS blue links */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        /* Gmail mobile fix */
+        u + #body a {
+            color: inherit;
+            text-decoration: none;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
         @media screen and (max-width: 600px) {
-            .wrapper {
-                padding-top: 20px !important;
-                padding-bottom: 20px !important;
-                padding-left: 10px !important;
-                padding-right: 10px !important;
-            }
-            .outer {
+            .email-container {
                 width: 100% !important;
                 max-width: 100% !important;
+            }
+            .content-cell {
+                padding: 25px 18px !important;
             }
             .logo-cell {
                 padding: 20px 15px !important;
             }
-            .content-cell {
-                padding: 30px 20px !important;
-            }
             .footer-cell {
                 padding: 20px 15px !important;
             }
-            img {
-                max-width: 100% !important;
-                height: auto !important;
+            .body-text {
+                font-size: 15px !important;
+            }
+            .greeting {
+                font-size: 19px !important;
             }
         }
     </style>
 </head>
-<body>
+<!-- id="body" szükséges a Gmail u+ selectorhoz -->
+<body id="body" style="margin: 0; padding: 0; background-color: #f4f6f8; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
 
-<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f6f8">
+<!-- Outer wrapper — 100% széles -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f6f8;">
     <tr>
-        <td align="center" style="padding-top: 40px; padding-bottom: 40px; padding-left: 20px; padding-right: 20px;">
+        <td align="center" style="padding: 30px 10px;">
 
-            <table class="outer" align="center" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); overflow: hidden; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
+            <!--
+                KULCSFONTOSSÁGÚ: Ne adj meg fix width attribútumot itt!
+                A max-width CSS-ben van, width="100%" az attribútum.
+                Ez biztosítja, hogy mobilon összeszűkül, asztali gépen max 600px.
+            -->
+            <table
+                    class="email-container"
+                    role="presentation"
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                    style="
+                    width: 100%;
+                    max-width: 600px;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                    color: #333333;
+                "
+            >
 
+                <!-- HEADER / LOGO -->
                 <tr>
-                    <td class="logo-cell" align="center" bgcolor="#321C5A" style="padding: 30px 20px; border-bottom: 1px solid #eeeeee;">
-                        <img src="https://ajandekbar.hu/assets/icons/mainlogo.svg" alt="AjándékBár Logo" width="200" style="max-width: 200px; height: auto; display: block;">
+                    <td
+                            class="logo-cell"
+                            align="center"
+                            bgcolor="#321C5A"
+                            style="
+                            padding: 28px 20px;
+                            background-color: #321C5A;
+                            border-radius: 8px 8px 0 0;
+                        "
+                    >
+                        <!--
+                            Fontos: width attribútum legyen max 280px (mobilon elfér),
+                            de ne legyen fix pixel — hadd skálázódjon CSS-sel.
+                        -->
+                        <img
+                                src="https://ajandekbar.hu/assets/icons/mainlogo.svg"
+                                alt="AjándékBár"
+                                width="200"
+                                style="
+                                display: block;
+                                width: 200px;
+                                max-width: 70%;
+                                height: auto;
+                                margin: 0 auto;
+                            "
+                        >
                     </td>
                 </tr>
 
+                <!-- MAIN CONTENT -->
                 <tr>
-                    <td class="content-cell" style="padding: 40px 30px;">
+                    <td
+                            class="content-cell"
+                            style="padding: 35px 30px;"
+                    >
 
-                        <p style="font-size: 22px; color: #111111; font-weight: bold; margin-bottom: 20px;">{{NAME}}!</p>
+                        <!-- Megszólítás -->
+                        <p
+                                class="greeting"
+                                style="
+                                font-size: 21px;
+                                font-weight: bold;
+                                color: #111111;
+                                margin: 0 0 18px 0;
+                                line-height: 1.3;
+                                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            "
+                        >{{NAME}}!</p>
 
-                        <div class="body-content" style="font-size: 16px; line-height: 1.6; color: #333333;">
+                        <!-- Törzs szöveg — a {{BODY}} placeholder HTML bekezdéseket tartalmazhat -->
+                        <div
+                                style="
+                                font-size: 16px;
+                                line-height: 1.65;
+                                color: #333333;
+                                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            "
+                        >
                             {{BODY}}
                         </div>
 
-                        <p style="font-size: 16px; margin-bottom: 0; margin-top: 20px;">
+                        <!-- Aláírás blokk -->
+                        <p style="
+                            font-size: 16px;
+                            color: #333333;
+                            margin: 22px 0 0 0;
+                            line-height: 1.6;
+                            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                        ">
                             Üdvözlettel,<br>
-                            <img src="cid:signature"
-                                 alt="Aláírás" style="max-width: 100%; height: auto; display: block;">
+                            <img
+                                    src="cid:signature"
+                                    alt="Aláírás"
+                                    style="
+                                    display: block;
+                                    max-width: 100%;
+                                    height: auto;
+                                    margin-top: 8px;
+                                "
+                            >
                         </p>
 
                     </td>
                 </tr>
 
+                <!-- FOOTER -->
                 <tr>
-                    <td class="footer-cell" align="center" bgcolor="#fafafa" style="padding: 30px 20px; border-top: 1px solid #eeeeee; font-size: 13px; color: #888888; line-height: 1.5;">
-
-                        <p style="margin-bottom: 15px;">
-                            <a href="https://www.facebook.com/ajandekbar" target="_blank" class="footer-link">Facebook</a> &nbsp;|&nbsp;
-                            <a href="https://www.instagram.com/ajandekbar" target="_blank" class="footer-link">Instagram</a> &nbsp;|&nbsp;
-                            <a href="https://ajandekbar.hu" target="_blank" class="footer-link">Weboldal</a>
+                    <td
+                            class="footer-cell"
+                            align="center"
+                            bgcolor="#fafafa"
+                            style="
+                            padding: 25px 20px;
+                            background-color: #fafafa;
+                            border-top: 1px solid #eeeeee;
+                            border-radius: 0 0 8px 8px;
+                            font-size: 13px;
+                            color: #888888;
+                            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                        "
+                    >
+                        <p style="margin: 0; line-height: 2;">
+                            <a href="https://www.facebook.com/ajandekbar" target="_blank"
+                               style="color: #888888; text-decoration: none; font-size: 13px;"
+                            >Facebook</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://www.instagram.com/ajandekbar" target="_blank"
+                               style="color: #888888; text-decoration: none; font-size: 13px;"
+                            >Instagram</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://ajandekbar.hu" target="_blank"
+                               style="color: #888888; text-decoration: none; font-size: 13px;"
+                            >Weboldal</a>
                         </p>
                     </td>
                 </tr>
 
             </table>
+            <!-- /email-container -->
 
         </td>
     </tr>
