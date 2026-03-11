@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
     <title>AjándékBár - Sales Email</title>
     <!--[if mso]>
     <noscript>
@@ -14,8 +16,6 @@
     </noscript>
     <![endif]-->
     <style type="text/css">
-        /* Gmail strips <style> on mobile, so everything critical is inline too.
-           These styles serve desktop webmail and Apple Mail. */
         body, table, td, a {
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
@@ -50,6 +50,60 @@
             font-weight: inherit;
             line-height: inherit;
         }
+
+        /* ================================================
+           SÖTÉT MÓD FIX
+           A meta color-scheme jelzi a kliensnek, hogy
+           kezeljük magunk a sötét módot — ne invertálja.
+           Az !important + specifikus szelektorok felülírják
+           az automatikus invertálást Apple Mailben és
+           az újabb Outlookban.
+        ================================================ */
+        @media (prefers-color-scheme: dark) {
+            /* Külső háttér */
+            body,
+            .outer-wrapper,
+            .outer-td {
+                background-color: #1a1a2e !important;
+            }
+
+            /* Email kártya háttere */
+            .email-container {
+                background-color: #242438 !important;
+            }
+
+            /* FEJLÉC: rögzítjük a lila színt, megakadályozzuk az invertálást */
+            .logo-cell,
+            .logo-cell td {
+                background-color: #321C5A !important;
+                /* A mso-color-alt Outlookban rögzíti a háttérszínt */
+            }
+
+            /* Szövegek */
+            .greeting {
+                color: #f0f0f0 !important;
+            }
+            .body-div {
+                color: #cccccc !important;
+            }
+            .signature-text {
+                color: #cccccc !important;
+            }
+
+            /* Footer */
+            .footer-cell {
+                background-color: #1e1e30 !important;
+                border-top: 1px solid #3a3a5c !important;
+            }
+            .footer-cell p,
+            .footer-cell a {
+                color: #aaaaaa !important;
+            }
+        }
+
+        /* ================================================
+           RESZPONZÍV
+        ================================================ */
         @media screen and (max-width: 600px) {
             .email-container {
                 width: 100% !important;
@@ -73,19 +127,28 @@
         }
     </style>
 </head>
-<!-- id="body" szükséges a Gmail u+ selectorhoz -->
 <body id="body" style="margin: 0; padding: 0; background-color: #f4f6f8; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
 
-<!-- Outer wrapper — 100% széles -->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f6f8;">
+<!-- Outer wrapper -->
+<table
+        role="presentation"
+        width="100%"
+        cellpadding="0"
+        cellspacing="0"
+        border="0"
+        class="outer-wrapper"
+        style="background-color: #f4f6f8;"
+>
     <tr>
-        <td align="center" style="padding: 30px 10px;">
+        <td align="center" class="outer-td" style="padding: 30px 10px;">
 
-            <!--
-                KULCSFONTOSSÁGÚ: Ne adj meg fix width attribútumot itt!
-                A max-width CSS-ben van, width="100%" az attribútum.
-                Ez biztosítja, hogy mobilon összeszűkül, asztali gépen max 600px.
-            -->
+            <!-- Email container — Outlookban a max-width nem működik,
+                 ezért MSO conditional commenttel fix 600px-es wrappert adunk. -->
+            <!--[if mso]>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" align="center">
+                <tr><td>
+            <![endif]-->
+
             <table
                     class="email-container"
                     role="presentation"
@@ -104,6 +167,11 @@
 
                 <!-- HEADER / LOGO -->
                 <tr>
+                    <!--
+                        A bgcolor attribútum (nem csak CSS) biztosítja,
+                        hogy Outlookban is megjelenjen a háttérszín.
+                        Az mso-padding-alt a belső cellapaddingot állítja MSO-ban.
+                    -->
                     <td
                             class="logo-cell"
                             align="center"
@@ -112,12 +180,13 @@
                             padding: 28px 20px;
                             background-color: #321C5A;
                             border-radius: 8px 8px 0 0;
+                            mso-padding-alt: 28px 20px;
                         "
                     >
-                        <!--
-                            Fontos: width attribútum legyen max 280px (mobilon elfér),
-                            de ne legyen fix pixel — hadd skálázódjon CSS-sel.
-                        -->
+                        <!--[if mso]>
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr><td align="center" bgcolor="#321C5A" style="background-color:#321C5A; padding:0;">
+                        <![endif]-->
                         <img
                                 src="https://ajandekbar.hu/assets/icons/mainlogo.svg"
                                 alt="AjándékBár"
@@ -130,6 +199,10 @@
                                 margin: 0 auto;
                             "
                         >
+                        <!--[if mso]>
+                        </td></tr>
+                        </table>
+                        <![endif]-->
                     </td>
                 </tr>
 
@@ -153,8 +226,9 @@
                             "
                         >{{NAME}}!</p>
 
-                        <!-- Törzs szöveg — a {{BODY}} placeholder HTML bekezdéseket tartalmazhat -->
+                        <!-- Törzs -->
                         <div
+                                class="body-div"
                                 style="
                                 font-size: 16px;
                                 line-height: 1.65;
@@ -165,14 +239,17 @@
                             {{BODY}}
                         </div>
 
-                        <!-- Aláírás blokk -->
-                        <p style="
-                            font-size: 16px;
-                            color: #333333;
-                            margin: 22px 0 0 0;
-                            line-height: 1.6;
-                            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                        ">
+                        <!-- Aláírás -->
+                        <p
+                                class="signature-text"
+                                style="
+                                font-size: 16px;
+                                color: #333333;
+                                margin: 22px 0 0 0;
+                                line-height: 1.6;
+                                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            "
+                        >
                             Üdvözlettel,<br>
                             <img
                                     src="cid:signature"
@@ -223,6 +300,11 @@
 
             </table>
             <!-- /email-container -->
+
+            <!--[if mso]>
+            </td></tr>
+            </table>
+            <![endif]-->
 
         </td>
     </tr>
