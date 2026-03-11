@@ -90,7 +90,10 @@ function renderPreview() {
         .replace(/{{NAME}}/g, name)
         .replace(/{{BODY}}/g, formattedBody);
         
-    // CID csere törölve - most sima direkt link van a template-ben
+    // Helyi előnézetben a CID-t lecseréljük sima relatív útvonalra, hogy látszódjon a kép
+    // Mert a CID csak emailben működik, böngészőben nem.
+    finalHtml = finalHtml.replace('src="cid:signature"', 'src="/templates/flora/8cc05a95-834e-4977-81f3-7e00131f02a3.jpg"');
+
 
     const iframe = document.getElementById('emailPreview');
     const doc = iframe.contentWindow.document;
@@ -140,6 +143,10 @@ async function sendEmail() {
     formData.append('templateId', templateId);
     
     // HTML tartalom generálása
+    // Fontos: Itt a 'renderPreview' módosított HTML-t ad vissza (cid csere),
+    // de nekünk az EREDETI kell a küldéshez (cid:signature).
+    // Ezért újra generáljuk a cserék nélkül.
+
     const name = document.getElementById('varName').value || 'Kedves Hölgyem / Uram';
     let bodyText = document.getElementById('varBody').value || '';
     const formattedBody = bodyText.replace(/\n/g, '<br>');

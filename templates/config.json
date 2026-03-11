@@ -30,6 +30,13 @@
       "id": "flora",
       "name": "Flóra sablon",
       "file": "flora/email.html",
+      "attachments": [
+        {
+            "filename": "signature.jpg",
+            "path": "flora/8cc05a95-834e-4977-81f3-7e00131f02a3.jpg",
+            "cid": "signature"
+        }
+      ],
       "bodies": [
         {
           "id": "elso_megkereses",
