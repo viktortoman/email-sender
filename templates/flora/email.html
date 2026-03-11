@@ -60,6 +60,33 @@
             color: #321C5A !important;
             text-decoration: underline;
         }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 600px) {
+            .wrapper {
+                padding-top: 20px !important;
+                padding-bottom: 20px !important;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+            .outer {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .logo-cell {
+                padding: 20px 15px !important;
+            }
+            .content-cell {
+                padding: 30px 20px !important;
+            }
+            .footer-cell {
+                padding: 20px 15px !important;
+            }
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -71,13 +98,13 @@
             <table class="outer" align="center" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); overflow: hidden; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
 
                 <tr>
-                    <td align="center" bgcolor="#321C5A" style="padding: 30px 20px; border-bottom: 1px solid #eeeeee;">
+                    <td class="logo-cell" align="center" bgcolor="#321C5A" style="padding: 30px 20px; border-bottom: 1px solid #eeeeee;">
                         <img src="https://ajandekbar.hu/assets/icons/mainlogo.svg" alt="AjándékBár Logo" width="200" style="max-width: 200px; height: auto; display: block;">
                     </td>
                 </tr>
 
                 <tr>
-                    <td style="padding: 40px 30px;">
+                    <td class="content-cell" style="padding: 40px 30px;">
 
                         <p style="font-size: 22px; color: #111111; font-weight: bold; margin-bottom: 20px;">{{NAME}}!</p>
 
@@ -88,14 +115,14 @@
                         <p style="font-size: 16px; margin-bottom: 0; margin-top: 20px;">
                             Üdvözlettel,<br>
                             <img src="cid:signature"
-                                 alt="Aláírás" style="max-width: 600px; height: auto; display: block;">
+                                 alt="Aláírás" style="max-width: 100%; height: auto; display: block;">
                         </p>
 
                     </td>
                 </tr>
 
                 <tr>
-                    <td align="center" bgcolor="#fafafa" style="padding: 30px 20px; border-top: 1px solid #eeeeee; font-size: 13px; color: #888888; line-height: 1.5;">
+                    <td class="footer-cell" align="center" bgcolor="#fafafa" style="padding: 30px 20px; border-top: 1px solid #eeeeee; font-size: 13px; color: #888888; line-height: 1.5;">
 
                         <p style="margin-bottom: 15px;">
                             <a href="https://www.facebook.com/ajandekbar" target="_blank" class="footer-link">Facebook</a> &nbsp;|&nbsp;
