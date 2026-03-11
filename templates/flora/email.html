@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AjándékBár - Sales Email</title>
+    <style>
+        /* Client-specific Resets
+          Forces Outlook and iOS mail apps to render sizes and tables correctly.
+        */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333333;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Main wrapper styles */
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f6f8;
+            padding-bottom: 40px;
+        }
+
+        /* Inner container max-width */
+        .outer {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Dynamic body content wrapper */
+        .body-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #333333;
+        }
+
+        /* Footer link hover effects */
+        .footer-link {
+            color: #888888;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            color: #321C5A !important;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f6f8">
+    <tr>
+        <td align="center" style="padding-top: 40px; padding-bottom: 40px; padding-left: 20px; padding-right: 20px;">
+
+            <table class="outer" align="center" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); overflow: hidden; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
+
+                <tr>
+                    <td align="center" bgcolor="#321C5A" style="padding: 30px 20px; border-bottom: 1px solid #eeeeee;">
+                        <img src="https://ajandekbar.hu/assets/icons/mainlogo.svg" alt="AjándékBár Logo" width="200" style="max-width: 200px; height: auto; display: block;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding: 40px 30px;">
+
+                        <p style="font-size: 22px; color: #111111; font-weight: bold; margin-bottom: 20px;">{{NAME}}!</p>
+
+                        <div class="body-content" style="font-size: 16px; line-height: 1.6; color: #333333;">
+                            {{BODY}}
+                        </div>
+
+                        <p style="font-size: 16px; margin-bottom: 0; margin-top: 20px;">
+                            Üdvözlettel,<br>
+                            <img src="/templates/flora/8cc05a95-834e-4977-81f3-7e00131f02a3.jpg"
+                                 alt="Aláírás" style="max-width: 600px; height: auto; display: block;">
+                        </p>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" bgcolor="#fafafa" style="padding: 30px 20px; border-top: 1px solid #eeeeee; font-size: 13px; color: #888888; line-height: 1.5;">
+
+                        <p style="margin-bottom: 15px;">
+                            <a href="https://www.facebook.com/ajandekbar" target="_blank" class="footer-link">Facebook</a> &nbsp;|&nbsp;
+                            <a href="https://www.instagram.com/ajandekbar" target="_blank" class="footer-link">Instagram</a> &nbsp;|&nbsp;
+                            <a href="https://ajandekbar.hu" target="_blank" class="footer-link">Weboldal</a>
+                        </p>
+                    </td>
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

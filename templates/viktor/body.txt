@@ -1,0 +1,9 @@
+Szeretnék jelentkezni a meghirdetett [Pozíció neve] pozícióra
+
+Több mint 7 éve foglalkozom webfejlesztéssel, és ez idő alatt nemcsak a technológiákat tanultam meg, hanem azt is, hogyan építsek valóban időtálló rendszereket. A stackemben otthonosan mozgok mind backend (Laravel, Symfony, Node.js), mind frontend oldalon (Vue.js, React, Next.js).
+
+Számomra a fejlesztés nem csak a kódolásról szól: hiszek a tiszta, karbantartható kódban és a logikus architektúrákban. Emellett szeretek csapatban gondolkodni, nem ijedek meg a komplex problémamegoldástól, és szívesen adom át a tudásomat másoknak is.
+
+Csatoltam az önéletrajzomat, a portfóliómat pedig a lenti gombon éred el.
+
+Köszönöm, ha ránézel, és várom a visszajelzésed!

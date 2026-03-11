@@ -1,0 +1,47 @@
+{
+  "senders": [
+    {
+      "id": "viktor",
+      "name": "Tomán Viktor",
+      "email": "viktor.toman19@gmail.com",
+      "pass": "rwna svvq cdyt cczp"
+    },
+    {
+      "id": "flora",
+      "name": "Tomán-Körmöczi Flóra",
+      "email": "flora@ajandekbar.hu",
+      "pass": "hdql lygr bpcu azrb"
+    }
+  ],
+  "templates": [
+    {
+      "id": "viktor",
+      "name": "Viktor sablon",
+      "file": "viktor/email.html",
+      "bodies": [
+        {
+          "id": "default",
+          "name": "Alapértelmezett",
+          "file": "viktor/body.txt"
+        }
+      ]
+    },
+    {
+      "id": "flora",
+      "name": "Flóra sablon",
+      "file": "flora/email.html",
+      "bodies": [
+        {
+          "id": "elso_megkereses",
+          "name": "1. körös megkeresés/ 1. kapcsolatfelvétel",
+          "file": "flora/elso_megkereses.txt"
+        },
+        {
+          "id": "elso_follow_up",
+          "name": "1. follow-up",
+          "file": "flora/elso_follow_up.txt"
+        }
+      ]
+    }
+  ]
+}
