@@ -4,13 +4,13 @@
       "id": "viktor",
       "name": "Tomán Viktor",
       "email": "viktor.toman19@gmail.com",
-      "pass": "rwna svvq cdyt cczp"
+      "envPass": "VIKTOR_PASS"
     },
     {
       "id": "flora",
       "name": "Tomán-Körmöczi Flóra",
       "email": "flora@ajandekbar.hu",
-      "pass": "hdql lygr bpcu azrb"
+      "envPass": "FLORA_PASS"
     }
   ],
   "templates": [

@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const upload = multer({ dest: 'uploads/' }); // Átmeneti mappa a feltöltött fájloknak
+// Vercel-en csak memóriában tárolhatunk fájlokat (read-only fájlrendszer)
+const upload = multer({ storage: multer.memoryStorage() });
 
 const PORT = process.env.PORT || 7000;
 
@@ -113,31 +114,44 @@ app.post('/send-email', upload.array('attachments'), async (req, res) => {
     return res.status(400).json({ success: false, message: 'Invalid sender' });
   }
 
+  // Jelszó feloldása környezeti változóból
+  let senderPass = '';
+  if (sender.envPass) {
+      senderPass = process.env[sender.envPass];
+      if (!senderPass) {
+          console.error(`Hiányzó környezeti változó: ${sender.envPass}`);
+          return res.status(500).json({ success: false, message: 'Szerver konfigurációs hiba (hiányzó jelszó)' });
+      }
+  } else if (sender.pass) {
+      // Visszamenőleges kompatibilitás (ha a configban maradt a jelszó)
+      senderPass = sender.pass;
+  } else {
+      return res.status(500).json({ success: false, message: 'Nincs jelszó beállítva a küldőhöz' });
+  }
+
   try {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: sender.email,
-        pass: sender.pass,
+        pass: senderPass,
       },
     });
 
     // Csatolmányok összeállítása
     let mailAttachments = [];
 
-    // 1. A felhasználó által feltöltött fájlok
+    // 1. A felhasználó által feltöltött fájlok (Most már Buffer-ből jönnek a memóriából)
     if (files && files.length > 0) {
         files.forEach(file => {
             mailAttachments.push({
                 filename: file.originalname,
-                path: file.path // A multer ideiglenes útvonala
+                content: file.buffer // A fájl tartalma a memóriából
             });
         });
     }
 
     // 2. A sablonhoz konfigurált fix csatolmányok (HA lennének ilyenek még)
-    // Most kivettük a CID-s logikát, de ha valaki simán csatolni akar fájlt a sablonhoz,
-    // az itt maradhat, csak a 'cid' property nélkül.
     if (template && template.attachments) {
         template.attachments.forEach(att => {
             const attPath = path.join(__dirname, 'templates', att.path);
@@ -146,7 +160,7 @@ app.post('/send-email', upload.array('attachments'), async (req, res) => {
                     filename: att.filename,
                     path: attPath
                 };
-                if(att.cid) attachmentObj.cid = att.cid; // Ha mégis lenne CID
+                if(att.cid) attachmentObj.cid = att.cid;
 
                 mailAttachments.push(attachmentObj);
             } else {
@@ -167,14 +181,7 @@ app.post('/send-email', upload.array('attachments'), async (req, res) => {
 
     console.log('Message sent: %s', info.messageId);
 
-    // Ideiglenes fájlok törlése
-    if (files && files.length > 0) {
-        files.forEach(file => {
-            fs.unlink(file.path, (err) => {
-                if (err) console.error("Hiba a temp fájl törlésekor:", err);
-            });
-        });
-    }
+    // Nincs szükség fájl törlésre, mert memóriában voltunk
 
     res.json({ success: true, message: 'Email sent successfully!' });
 
